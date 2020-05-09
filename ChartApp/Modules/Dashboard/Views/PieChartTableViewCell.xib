@@ -9,32 +9,43 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PieChartTableViewCell" customModule="ChartApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="409" id="KGk-i7-Jjw" customClass="PieChartTableViewCell" customModule="ChartApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="409"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="409"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXS-Ay-N6B">
-                        <rect key="frame" x="16" y="16" width="288" height="12"/>
+                        <rect key="frame" x="16" y="16" width="288" height="145"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-me-psA" customClass="BarChartView" customModule="Charts">
+                        <rect key="frame" x="16" y="177" width="288" height="216"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="0yU-me-psA" secondAttribute="height" multiplier="4:3" id="6gY-Vt-ffU"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="0yU-me-psA" secondAttribute="trailing" constant="16" id="1To-jE-H0e"/>
                     <constraint firstItem="QXS-Ay-N6B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="6DM-4g-PoO"/>
-                    <constraint firstAttribute="bottom" secondItem="QXS-Ay-N6B" secondAttribute="bottom" constant="16" id="BDs-dS-KMv"/>
                     <constraint firstAttribute="trailing" secondItem="QXS-Ay-N6B" secondAttribute="trailing" constant="16" id="VTo-PJ-59P"/>
+                    <constraint firstItem="0yU-me-psA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bYQ-i9-x9D"/>
                     <constraint firstItem="QXS-Ay-N6B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="dru-7z-7tM"/>
+                    <constraint firstItem="0yU-me-psA" firstAttribute="top" secondItem="QXS-Ay-N6B" secondAttribute="bottom" constant="16" id="eKp-df-fI7"/>
+                    <constraint firstAttribute="bottom" secondItem="0yU-me-psA" secondAttribute="bottom" constant="16" id="p5A-VY-ntr"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="barChartView" destination="0yU-me-psA" id="5jc-b0-5sJ"/>
                 <outlet property="descriptionLabel" destination="QXS-Ay-N6B" id="bxc-D4-Rl9"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="141.96428571428569"/>
+            <point key="canvasLocation" x="137.68115942028987" y="263.50446428571428"/>
         </tableViewCell>
     </objects>
 </document>

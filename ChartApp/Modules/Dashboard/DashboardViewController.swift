@@ -89,7 +89,7 @@ class DashboardViewController: UIViewController {
     // MARK: - Update UI
 
     func updateUI() {
-        chartsTableView.isHidden = header.count == 0
+        chartsTableView.isHidden = pieChart.count == 0
         chartsTableView.reloadData()
     }
 

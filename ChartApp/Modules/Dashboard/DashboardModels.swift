@@ -228,7 +228,7 @@ enum DashboardModels {
 
                         struct ChartItems: Decodable {
                             var key: String?
-                            var value: Decimal?
+                            var value: Double?
 
                             enum CodingKeys: String, CodingKey {
                                 case key
@@ -238,13 +238,13 @@ enum DashboardModels {
                             init(from dictionary: [String: Any]) {
                                 let keys = CodingKeys.self
                                 key = dictionary[keys.key.rawValue] as? String
-                                value = (dictionary[keys.value.rawValue] as? NSNumber)?.decimalValue
+                                value = dictionary[keys.value.rawValue] as? Double
                             }
 
                             init(from decoder: Decoder) throws {
                                 let values = try decoder.container(keyedBy: CodingKeys.self)
                                 key = try values.decodeIfPresent(String.self, forKey: .key)
-                                value = try values.decodeIfPresent(Decimal.self, forKey: .value)
+                                value = try values.decodeIfPresent(Double.self, forKey: .value)
                             }
                         }
 

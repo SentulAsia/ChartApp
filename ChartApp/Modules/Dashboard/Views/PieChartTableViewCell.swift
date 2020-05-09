@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class PieChartTableViewCell: UITableViewCell {
 
@@ -15,6 +16,7 @@ class PieChartTableViewCell: UITableViewCell {
     static let identifier = "PieChartTableViewCell"
 
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var barChartView: BarChartView!
 
     // MARK: - View Lifecycle
 
@@ -24,5 +26,10 @@ class PieChartTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    // MARK: - Methods
+
+    func setChart() {
     }
 }

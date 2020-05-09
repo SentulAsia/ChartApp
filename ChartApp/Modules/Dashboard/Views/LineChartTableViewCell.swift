@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 class LineChartTableViewCell: UITableViewCell {
 
@@ -15,6 +16,7 @@ class LineChartTableViewCell: UITableViewCell {
     static let identifier = "LineChartTableViewCell"
 
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var lineChartView: BarChartView!
 
     // MARK: - View Lifecycle
 
@@ -24,5 +26,10 @@ class LineChartTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    // MARK: - Methods
+
+    func setChart() {
     }
 }

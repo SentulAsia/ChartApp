@@ -28,4 +28,9 @@ class RatingTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+
+    // MARK: - Methods
+
+    func setChart() {
+    }
 }

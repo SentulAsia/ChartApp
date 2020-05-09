@@ -34,6 +34,7 @@ class DashboardWorker {
     }
 
     private func handleFetchFromRemoteDataStore(isSuccessful: Bool, response: FetchDataStoreModels.Response?, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
+        let message = response?.response?.message ?? Constants.Message.failureDefault
         let analytics = response?.response?.data?.analytics
         let header = [analytics?.rating?.title, analytics?.job?.title, analytics?.service?.title, "Line Charts", "Pie Charts"]
         let rating = generateRating(from: analytics?.rating)
@@ -41,7 +42,7 @@ class DashboardWorker {
         let serviceItems = generateItems(from: analytics?.service?.items)
         let lineChart = generateLineChart(from: analytics?.lineCharts?.first)
         let pieChart = generatePieChart(from: analytics?.pieCharts)
-        let viewModel = FetchDataStoreModels.ViewModel(isSuccessful: isSuccessful, message: response?.response?.message, header: header, rating: rating, jobItems: jobItems, serviceItems: serviceItems, lineChart: lineChart, pieChart: pieChart)
+        let viewModel = FetchDataStoreModels.ViewModel(isSuccessful: isSuccessful, message: message, header: header, rating: rating, jobItems: jobItems, serviceItems: serviceItems, lineChart: lineChart, pieChart: pieChart)
         completion(viewModel)
     }
 }
