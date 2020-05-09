@@ -19,26 +19,4 @@ class APIManager {
     typealias FetchDashboard = DashboardModels.FetchFromRemoteDataStore
 
     lazy var worker = APIWorker()
-
-    // MARK: - Methods
-
-    func getDashboardData(request: FetchDashboard.Request,
-                                   success: @escaping (_ response: FetchDashboard.Response) -> Void,
-                                   failure: @escaping (_ serverError: String) -> Void) {
-        worker.request("v10/analytic/dashboard/operation/mock", method: .get, parameters: request.toDictionary()) { (response) in
-            let defaultError = response.result.error?.localizedDescription ?? Constants.Message.failureDefault
-            guard response.result.isSuccess else {
-                failure(defaultError)
-                return
-            }
-
-            let decoder = JSONDecoder()
-            guard let rawData = response.data, let decodedData = try? decoder.decode(FetchDashboard.Response.self, from: rawData) else {
-                failure(defaultError)
-                return
-            }
-            success(decodedData)
-            return
-        }
-    }
 }

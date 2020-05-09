@@ -23,7 +23,7 @@ enum DashboardModels {
             func toDictionary() -> [String: Any] {
                 let keys = CodingKeys.self
                 var dictionary = [String: Any]()
-                dictionary[keys.scope.rawValue] = scope
+                dictionary[keys.scope.rawValue] = scope.rawValue
                 return dictionary
             }
 
@@ -347,12 +347,13 @@ enum DashboardModels {
         }
 
         struct ViewModel {
+            var isSuccessful: Bool
         }
     }
 
     // MARK: - Types
 
-    enum Scope: String, Encodable {
+    enum Scope: String, Encodable, CaseIterable {
         case all = "ALL"
         case today = "TODAY"
         case last7Days = "LAST_7_DAYS"

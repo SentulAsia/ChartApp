@@ -19,21 +19,21 @@ class DashboardWorker {
 
     // MARK: - Methods
 
-    /// Fetch recipe from remote data store
+    /// Fetch dashboard data from remote data store
     ///
     /// - Parameters:
     ///   - request: request model
     ///   - completion: completion handler with the view model
     func fetchFromRemoteDataStore(with request: FetchDataStoreModels.Request, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
         apiManager.getDashboardData(request: request, success: { [weak self] (response) in
-            self?.handleFetchFromRemoteDataStore(completion: completion)
+            self?.handleFetchFromRemoteDataStore(isSuccessful: true, completion: completion)
         }) { [weak self] (serverError) in
-            self?.handleFetchFromRemoteDataStore(completion: completion)
+            self?.handleFetchFromRemoteDataStore(isSuccessful: false, completion: completion)
         }
     }
 
-    private func handleFetchFromRemoteDataStore(completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
-        let viewModel = FetchDataStoreModels.ViewModel()
+    private func handleFetchFromRemoteDataStore(isSuccessful: Bool, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
+        let viewModel = FetchDataStoreModels.ViewModel(isSuccessful: isSuccessful)
         completion(viewModel)
     }
 }

@@ -15,6 +15,8 @@ class DashboardViewController: UIViewController {
     typealias Models = DashboardModels
     typealias FetchDataStoreModels = Models.FetchFromRemoteDataStore
 
+    var scope: Models.Scope = .all
+
     lazy var worker = DashboardWorker()
 
     // MARK: - View Lifecycle
@@ -29,9 +31,30 @@ class DashboardViewController: UIViewController {
     // MARK: Fetch From Remote Data Store
 
     func fetchFromRemoteDataStore() {
-        let request = FetchDataStoreModels.Request(scope: .all)
+        let request = FetchDataStoreModels.Request(scope: scope)
         worker.fetchFromRemoteDataStore(with: request) { (viewModel) in
         }
+    }
+
+    @IBAction func filterButtonTapped(_ sender: Any) {
+        showDashboardFilter()
+    }
+
+    func showDashboardFilter() {
+        let actionSheet = UIAlertController(title: "Dashboard Filter", message: "Dashboard data will be filtered based on this options:", preferredStyle: .actionSheet)
+
+        for s in Models.Scope.allCases {
+            let action = UIAlertAction(title: s.rawValue.prettyPrinted(), style: .default) { [weak self] (action) in
+                self?.scope = s
+                self?.fetchFromRemoteDataStore()
+            }
+            actionSheet.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(cancelAction)
+
+        self.present(actionSheet, animated: true)
     }
 }
 

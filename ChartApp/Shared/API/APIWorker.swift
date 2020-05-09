@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct APIWorker {
+class APIWorker {
 
     // MARK: - Properties
 
@@ -19,23 +19,32 @@ struct APIWorker {
 
     // MARK: - Methods
 
+    /// Perform API Request to server
+    /// 
+    /// - Parameters:
+    ///   - endpoint: The API endpoint
+    ///   - method: The http method of the request
+    ///   - parameters: The parameters passed for the request, pass nil if none
+    ///   - headers: Optional header to be added to the request
+    ///   - body: Optional request body, parameters will be ignored if body is passed
+    ///   - completion: Handler when request have been completed with response as the parameter
     func request(_ endpoint: String,
                  method: APIMethod,
                  parameters: [String: Any]?,
                  headers: [String: String]? = nil,
                  body: Data? = nil,
-                 completionHandler: @escaping (_ response: APIResponse) -> Void) {
+                 completion: @escaping (_ response: APIResponse) -> Void) {
         guard let url = generateURL(from: endpoint, method: method, parameters: parameters) else {
             let e = NSError(domain: "", code: 0, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Error", value: Constants.Message.failureDefault, comment: "") ,
                 NSLocalizedFailureReasonErrorKey: NSLocalizedString("Error", value: Constants.Message.failureDefault, comment: "")
                 ])
-            Log("\n----------------------------")
+            Log("----------------------------")
             Log("Unable to generate URL from endpoint")
-            Log("----------------------------\n")
+            Log("----------------------------")
             let result = APIResult.failure(e)
             let r = APIResponse(request: nil, data: nil, response: nil, result: result)
-            completionHandler(r)
+            completion(r)
             return
         }
         var request = URLRequest(url: url)
@@ -52,15 +61,15 @@ struct APIWorker {
                     request.httpBody = data
                 }
             } catch {
-                Log("\n----------------------------")
+                Log("----------------------------")
                 Log("API url: ", url.description)
                 Log("params: ", parameters ?? "")
-                Log("\n\(url.description) Failed")
+                Log("\(url.description) Failed")
                 Log("response: nil")
-                Log("----------------------------\n")
+                Log("----------------------------")
                 let result = APIResult.failure(error)
                 let r = APIResponse(request: request, data: nil, response: nil, result: result)
-                completionHandler(r)
+                completion(r)
                 return
             }
         } else if let data = body {
@@ -74,32 +83,32 @@ struct APIWorker {
 
         let dataTask = sessionManager.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
             if let e = error {
-                Log("\n----------------------------")
+                Log("----------------------------")
                 Log("API url:", url.description)
                 Log("params:", parameters ?? "")
-                Log("\n\(url.description) Failed")
-                Log("----------------------------\n")
+                Log("\(url.description) Failed")
+                Log("----------------------------")
                 let result = APIResult.failure(e)
                 let r = APIResponse(request: request, data: data, response: response, result: result)
                 DispatchQueue.main.async {
-                    completionHandler(r)
+                    completion(r)
                     return
                 }
             } else {
                 if let d = data {
-                    Log("\n----------------------------")
+                    Log("----------------------------")
                     Log("API url:", url.description)
                     Log("params:", parameters ?? "")
-                    Log("\n\(url.description) Success")
+                    Log("\(url.description) Success")
                     if let httpResponse = response as? HTTPURLResponse {
                         Log("Result:", httpResponse.allHeaderFields as? [String: Any] ?? httpResponse)
                         Log("Status Code:", httpResponse.statusCode)
                     }
-                    Log("----------------------------\n")
+                    Log("----------------------------")
                     let result = APIResult.success(d)
                     let r = APIResponse(request: request, data: data, response: response, result: result)
                     DispatchQueue.main.async {
-                        completionHandler(r)
+                        completion(r)
                         return
                     }
                 } else {
@@ -107,15 +116,15 @@ struct APIWorker {
                         NSLocalizedDescriptionKey: NSLocalizedString("Error", value: Constants.Message.failureDefault, comment: "") ,
                         NSLocalizedFailureReasonErrorKey: NSLocalizedString("Error", value: Constants.Message.failureDefault, comment: "")
                         ])
-                    Log("\n----------------------------")
+                    Log("----------------------------")
                     Log("API url:", url.description)
                     Log("params:", parameters ?? "")
-                    Log("\n\(url.description) Failed")
-                    Log("----------------------------\n")
+                    Log("\(url.description) Failed")
+                    Log("----------------------------")
                     let result = APIResult.failure(e)
                     let r = APIResponse(request: request, data: data, response: response, result: result)
                     DispatchQueue.main.async {
-                        completionHandler(r)
+                        completion(r)
                         return
                     }
                 }
@@ -127,9 +136,9 @@ struct APIWorker {
 
 // MARK: - Helpers
 
-private extension APIWorker {
+extension APIWorker {
     func generateURL(from endpoint: String, method: APIMethod, parameters: [String: Any]?) -> URL? {
-        let stringURL = Constants.URL.server + endpoint
+        var stringURL = Constants.URL.server + endpoint
         if method == .get, let p = parameters as? [String: String] {
             var getParameter = ""
             var isFirst = true
@@ -138,6 +147,7 @@ private extension APIWorker {
                 getParameter += "\(parameter.key)=\(parameter.value)"
                 isFirst = false
             }
+            stringURL += getParameter
         }
         return URL(string: stringURL)
     }

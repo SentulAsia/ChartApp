@@ -18,7 +18,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dDw-wX-chS">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="P0f-Zc-KkH"/>
+                        <barButtonItem key="rightBarButtonItem" title="Filter" id="P0f-Zc-KkH">
+                            <connections>
+                                <action selector="filterButtonTapped:" destination="BYZ-38-t0r" id="pKK-jI-DTd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -12,7 +12,9 @@ struct Log {
     @discardableResult
     init(_ items: Any...) {
         #if targetEnvironment(simulator)
-        print(items)
+        for item in items {
+            print(item)
+        }
         #else
         // TODO: Log to Crashlytics
         #endif
