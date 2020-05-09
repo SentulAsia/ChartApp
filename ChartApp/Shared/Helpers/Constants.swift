@@ -13,6 +13,15 @@ enum Constants {
         static let main = "Main"
     }
 
+    enum Xib {
+        enum Dashboard {
+            static let rating = "RatingTableViewCell"
+            static let item = "ItemTableViewCell"
+            static let lineChart = "LineChartTableViewCell"
+            static let pieChart = "PieChartTableViewCell"
+        }
+    }
+
     enum URL {
         static let server = "https://skyrim.whipmobility.io"
     }

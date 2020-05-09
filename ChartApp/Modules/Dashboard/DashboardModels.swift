@@ -127,8 +127,10 @@ enum DashboardModels {
                                 job = nil
                             }
                             lineCharts = [[LineCharts]]()
+                            // Check for first array since the array is wrapped twice
                             if let lineChartsArrays = dictionary[keys.lineCharts.rawValue] as? [[[String: Any]]], let lineChartsArray = lineChartsArrays.first {
                                 for dic in lineChartsArray {
+                                    // Assign to first index of array since array is wrapped twice
                                     lineCharts?[0].append(LineCharts(from: dic))
                                 }
                             }
@@ -160,12 +162,14 @@ enum DashboardModels {
                         }
 
                         struct Items: Decodable {
+                            var avg: String?
                             var description: String?
                             var growth: Int?
                             var title: String?
                             var total: Int?
 
                             enum CodingKeys: String, CodingKey {
+                                case avg
                                 case description
                                 case growth
                                 case title
@@ -174,6 +178,7 @@ enum DashboardModels {
 
                             init(from dictionary: [String: Any]) {
                                 let keys = CodingKeys.self
+                                avg = dictionary[keys.avg.rawValue] as? String
                                 description = dictionary[keys.description.rawValue] as? String
                                 growth = dictionary[keys.growth.rawValue] as? Int
                                 title = dictionary[keys.title.rawValue] as? String
@@ -182,6 +187,7 @@ enum DashboardModels {
 
                             init(from decoder: Decoder) throws {
                                 let values = try decoder.container(keyedBy: CodingKeys.self)
+                                avg = try values.decodeIfPresent(String.self, forKey: .avg)
                                 description = try values.decodeIfPresent(String.self, forKey: .description)
                                 growth = try values.decodeIfPresent(Int.self, forKey: .growth)
                                 title = try values.decodeIfPresent(String.self, forKey: .title)
@@ -243,7 +249,7 @@ enum DashboardModels {
                         }
 
                         struct LineCharts: Decodable {
-                            var chartType: String?
+                            var chartType: ChartType?
                             var description: String?
                             var items: [LineChartItems]?
                             var title: String?
@@ -257,7 +263,7 @@ enum DashboardModels {
 
                             init(from dictionary: [String: Any]) {
                                 let keys = CodingKeys.self
-                                chartType = dictionary[keys.chartType.rawValue] as? String
+                                chartType = ChartType(rawValue: dictionary[keys.chartType.rawValue] as? String ?? "")
                                 description = dictionary[keys.description.rawValue] as? String
                                 items = [LineChartItems]()
                                 if let itemsArray = dictionary[keys.items.rawValue] as? [[String: Any]] {
@@ -270,7 +276,7 @@ enum DashboardModels {
 
                             init(from decoder: Decoder) throws {
                                 let values = try decoder.container(keyedBy: CodingKeys.self)
-                                chartType = try values.decodeIfPresent(String.self, forKey: .chartType)
+                                chartType = try values.decodeIfPresent(ChartType.self, forKey: .chartType)
                                 description = try values.decodeIfPresent(String.self, forKey: .description)
                                 items = try values.decodeIfPresent([LineChartItems].self, forKey: .items)
                                 title = try values.decodeIfPresent(String.self, forKey: .title)
@@ -305,7 +311,7 @@ enum DashboardModels {
                         }
 
                         struct PieCharts: Decodable {
-                            var chartType: String?
+                            var chartType: ChartType?
                             var description: String?
                             var items: [ChartItems]?
                             var title: String?
@@ -319,7 +325,7 @@ enum DashboardModels {
 
                             init(from dictionary: [String: Any]) {
                                 let keys = CodingKeys.self
-                                chartType = dictionary[keys.chartType.rawValue] as? String
+                                chartType = ChartType(rawValue: dictionary[keys.chartType.rawValue] as? String ?? "")
                                 description = dictionary[keys.description.rawValue] as? String
                                 items = [ChartItems]()
                                 if let itemsArray = dictionary[keys.items.rawValue] as? [[String: Any]] {
@@ -332,7 +338,7 @@ enum DashboardModels {
 
                             init(from decoder: Decoder) throws {
                                 let values = try decoder.container(keyedBy: CodingKeys.self)
-                                chartType = try values.decodeIfPresent(String.self, forKey: .chartType)
+                                chartType = try values.decodeIfPresent(ChartType.self, forKey: .chartType)
                                 description = try values.decodeIfPresent(String.self, forKey: .description)
                                 items = try values.decodeIfPresent([ChartItems].self, forKey: .items)
                                 title = try values.decodeIfPresent(String.self, forKey: .title)
@@ -411,7 +417,37 @@ enum DashboardModels {
         struct ViewModel {
             var isSuccessful: Bool
             var message: String?
+            var header: [String?]
+            var rating: Rating
+            var jobItems: [Item]
+            var serviceItems: [Item]
+            var lineChart: [LineChart]
+            var pieChart: [PieChart]
         }
+    }
+
+    // MARK: - View Model
+
+    struct Rating {
+        var description: String?
+        var average: String?
+        var totalItems: String?
+        var totalRating: String?
+    }
+
+    struct Item {
+        var title: String?
+        var description: String?
+        var image: UIImage?
+        var percentage: String?
+    }
+
+    struct LineChart {
+        var description: String?
+    }
+
+    struct PieChart {
+        var description: String?
     }
 
     // MARK: - Types
@@ -421,5 +457,10 @@ enum DashboardModels {
         case today = "TODAY"
         case last7Days = "LAST_7_DAYS"
         case last30Days = "LAST_30_DAYS"
+    }
+
+    enum ChartType: String, Decodable {
+        case line = "LINE"
+        case pie = "PIE"
     }
 }

@@ -28,6 +28,15 @@
 		B837F45C24669FBA00A32AB2 /* ToastController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B837F45A24669FBA00A32AB2 /* ToastController.xib */; };
 		B837F4602466C69A00A32AB2 /* LoadingIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F45E2466C69A00A32AB2 /* LoadingIndicatorController.swift */; };
 		B837F4612466C69A00A32AB2 /* LoadingIndicatorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B837F45F2466C69A00A32AB2 /* LoadingIndicatorController.xib */; };
+		B837F4642466E00100A32AB2 /* DashboardViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F4632466E00100A32AB2 /* DashboardViewController+TableView.swift */; };
+		B837F4672466E7FA00A32AB2 /* RatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F4652466E7FA00A32AB2 /* RatingTableViewCell.swift */; };
+		B837F4682466E7FA00A32AB2 /* RatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B837F4662466E7FA00A32AB2 /* RatingTableViewCell.xib */; };
+		B8A0D78C2466FD5200FF7F85 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0D78A2466FD5200FF7F85 /* ItemTableViewCell.swift */; };
+		B8A0D78D2466FD5200FF7F85 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A0D78B2466FD5200FF7F85 /* ItemTableViewCell.xib */; };
+		B8A0D79024670DEC00FF7F85 /* LineChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0D78E24670DEC00FF7F85 /* LineChartTableViewCell.swift */; };
+		B8A0D79124670DEC00FF7F85 /* LineChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A0D78F24670DEC00FF7F85 /* LineChartTableViewCell.xib */; };
+		B8A0D79424670DFD00FF7F85 /* PieChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0D79224670DFD00FF7F85 /* PieChartTableViewCell.swift */; };
+		B8A0D79524670DFD00FF7F85 /* PieChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A0D79324670DFD00FF7F85 /* PieChartTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +75,15 @@
 		B837F45A24669FBA00A32AB2 /* ToastController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastController.xib; sourceTree = "<group>"; };
 		B837F45E2466C69A00A32AB2 /* LoadingIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorController.swift; sourceTree = "<group>"; };
 		B837F45F2466C69A00A32AB2 /* LoadingIndicatorController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingIndicatorController.xib; sourceTree = "<group>"; };
+		B837F4632466E00100A32AB2 /* DashboardViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardViewController+TableView.swift"; sourceTree = "<group>"; };
+		B837F4652466E7FA00A32AB2 /* RatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTableViewCell.swift; sourceTree = "<group>"; };
+		B837F4662466E7FA00A32AB2 /* RatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingTableViewCell.xib; sourceTree = "<group>"; };
+		B8A0D78A2466FD5200FF7F85 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		B8A0D78B2466FD5200FF7F85 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		B8A0D78E24670DEC00FF7F85 /* LineChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartTableViewCell.swift; sourceTree = "<group>"; };
+		B8A0D78F24670DEC00FF7F85 /* LineChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartTableViewCell.xib; sourceTree = "<group>"; };
+		B8A0D79224670DFD00FF7F85 /* PieChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartTableViewCell.swift; sourceTree = "<group>"; };
+		B8A0D79324670DFD00FF7F85 /* PieChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +167,7 @@
 				B837F448246558BE00A32AB2 /* API */,
 				B837F44B24655D2B00A32AB2 /* Helpers */,
 				B837F45224666AE600A32AB2 /* Extensions */,
-				B837F45D24669FBE00A32AB2 /* Toast */,
-				B837F4622466C69E00A32AB2 /* Loading Indicator */,
+				B837F46A2466F2A400A32AB2 /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -184,7 +201,9 @@
 		B837F43D2465568400A32AB2 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B837F4692466E80000A32AB2 /* Views */,
 				B837F4192465345200A32AB2 /* DashboardViewController.swift */,
+				B837F4632466E00100A32AB2 /* DashboardViewController+TableView.swift */,
 				B837F43E246556B600A32AB2 /* DashboardModels.swift */,
 				B837F440246556C300A32AB2 /* DashboardWorker.swift */,
 			);
@@ -235,6 +254,30 @@
 				B837F45F2466C69A00A32AB2 /* LoadingIndicatorController.xib */,
 			);
 			path = "Loading Indicator";
+			sourceTree = "<group>";
+		};
+		B837F4692466E80000A32AB2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B837F4652466E7FA00A32AB2 /* RatingTableViewCell.swift */,
+				B837F4662466E7FA00A32AB2 /* RatingTableViewCell.xib */,
+				B8A0D78A2466FD5200FF7F85 /* ItemTableViewCell.swift */,
+				B8A0D78B2466FD5200FF7F85 /* ItemTableViewCell.xib */,
+				B8A0D78E24670DEC00FF7F85 /* LineChartTableViewCell.swift */,
+				B8A0D78F24670DEC00FF7F85 /* LineChartTableViewCell.xib */,
+				B8A0D79224670DFD00FF7F85 /* PieChartTableViewCell.swift */,
+				B8A0D79324670DFD00FF7F85 /* PieChartTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B837F46A2466F2A400A32AB2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B837F45D24669FBE00A32AB2 /* Toast */,
+				B837F4622466C69E00A32AB2 /* Loading Indicator */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,10 +361,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A0D79524670DFD00FF7F85 /* PieChartTableViewCell.xib in Resources */,
+				B8A0D79124670DEC00FF7F85 /* LineChartTableViewCell.xib in Resources */,
+				B837F4682466E7FA00A32AB2 /* RatingTableViewCell.xib in Resources */,
 				B837F4612466C69A00A32AB2 /* LoadingIndicatorController.xib in Resources */,
 				B837F4222465345500A32AB2 /* LaunchScreen.storyboard in Resources */,
 				B837F41F2465345500A32AB2 /* Assets.xcassets in Resources */,
 				B837F41D2465345200A32AB2 /* Main.storyboard in Resources */,
+				B8A0D78D2466FD5200FF7F85 /* ItemTableViewCell.xib in Resources */,
 				B837F45C24669FBA00A32AB2 /* ToastController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,11 +395,16 @@
 				B837F44A24655CE100A32AB2 /* Log.swift in Sources */,
 				B837F45B24669FBA00A32AB2 /* ToastController.swift in Sources */,
 				B837F44D24655FCC00A32AB2 /* Constants.swift in Sources */,
+				B8A0D79024670DEC00FF7F85 /* LineChartTableViewCell.swift in Sources */,
 				B837F4602466C69A00A32AB2 /* LoadingIndicatorController.swift in Sources */,
 				B837F441246556C300A32AB2 /* DashboardWorker.swift in Sources */,
 				B837F4162465345200A32AB2 /* AppDelegate.swift in Sources */,
 				B837F45124666AE100A32AB2 /* String+Utility.swift in Sources */,
+				B837F4672466E7FA00A32AB2 /* RatingTableViewCell.swift in Sources */,
 				B837F4452465585900A32AB2 /* APIWorker.swift in Sources */,
+				B8A0D79424670DFD00FF7F85 /* PieChartTableViewCell.swift in Sources */,
+				B837F4642466E00100A32AB2 /* DashboardViewController+TableView.swift in Sources */,
+				B8A0D78C2466FD5200FF7F85 /* ItemTableViewCell.swift in Sources */,
 				B837F4182465345200A32AB2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,19 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dRa-h8-zaR">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dRa-h8-zaR" secondAttribute="trailing" id="AYY-Mg-ArU"/>
+                            <constraint firstItem="dRa-h8-zaR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BK7-PA-elb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="dRa-h8-zaR" secondAttribute="top" id="FV2-8i-b4Y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dRa-h8-zaR" secondAttribute="bottom" id="rfa-hH-Qze"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dDw-wX-chS">
@@ -33,6 +45,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="allButton" destination="XLS-y2-CxW" id="3KO-pM-Lwu"/>
+                        <outlet property="chartsTableView" destination="dRa-h8-zaR" id="6H0-Tw-KOo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

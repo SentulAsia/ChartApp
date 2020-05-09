@@ -12,12 +12,23 @@ class DashboardViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet weak var chartsTableView: UITableView!
     @IBOutlet weak var allButton: UIBarButtonItem!
     
     typealias Models = DashboardModels
     typealias FetchDataStoreModels = Models.FetchFromRemoteDataStore
 
     var scope: Models.Scope = .all
+    var header: [String?] = []
+    var rating: Models.Rating?
+    var jobItems: [Models.Item] = []
+    var serviceItems: [Models.Item] = []
+    var lineChart: [Models.LineChart] = []
+    var pieChart: [Models.PieChart] = [] {
+        didSet {
+            updateUI()
+        }
+    }
 
     lazy var worker = DashboardWorker()
 
@@ -25,6 +36,7 @@ class DashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +45,18 @@ class DashboardViewController: UIViewController {
     }
 
     // MARK: - Buttons
+
+    func setupTableView() {
+        chartsTableView.isHidden = true
+        chartsTableView.dataSource = self
+        chartsTableView.delegate = self
+        chartsTableView.estimatedRowHeight = 250
+        chartsTableView.rowHeight = UITableView.automaticDimension
+        chartsTableView.register(UINib(nibName: Constants.Xib.Dashboard.rating, bundle: nil), forCellReuseIdentifier: RatingTableViewCell.identifier)
+        chartsTableView.register(UINib(nibName: Constants.Xib.Dashboard.item, bundle: nil), forCellReuseIdentifier: ItemTableViewCell.identifier)
+        chartsTableView.register(UINib(nibName: Constants.Xib.Dashboard.lineChart, bundle: nil), forCellReuseIdentifier: LineChartTableViewCell.identifier)
+        chartsTableView.register(UINib(nibName: Constants.Xib.Dashboard.pieChart, bundle: nil), forCellReuseIdentifier: PieChartTableViewCell.identifier)
+    }
 
     func setupButtons() {
         allButton.isEnabled = scope != .all
@@ -50,11 +74,23 @@ class DashboardViewController: UIViewController {
             loadingIndicator.dismiss()
             self?.setupButtons()
             if viewModel.isSuccessful {
-
+                self?.header = viewModel.header
+                self?.rating = viewModel.rating
+                self?.jobItems = viewModel.jobItems
+                self?.serviceItems = viewModel.serviceItems
+                self?.lineChart = viewModel.lineChart
+                self?.pieChart = viewModel.pieChart
             } else {
                 self?.showToast(with: viewModel.message)
             }
         }
+    }
+
+    // MARK: - Update UI
+
+    func updateUI() {
+        chartsTableView.isHidden = header.count == 0
+        chartsTableView.reloadData()
     }
 
     @IBAction func filterButtonTapped(_ sender: Any) {
