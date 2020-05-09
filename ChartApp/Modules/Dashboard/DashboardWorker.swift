@@ -26,6 +26,8 @@ class DashboardWorker {
     ///   - completion: completion handler with the view model
     func fetchFromRemoteDataStore(with request: FetchDataStoreModels.Request, completion: @escaping (_ viewModel: FetchDataStoreModels.ViewModel) -> Void) {
         apiManager.getDashboardData(request: request, success: { [weak self] (response) in
+            print(#function)
+            print(response)
             self?.handleFetchFromRemoteDataStore(isSuccessful: true, response: response, completion: completion)
         }) { [weak self] (serverError) in
             self?.handleFetchFromRemoteDataStore(isSuccessful: false, response: nil, completion: completion)

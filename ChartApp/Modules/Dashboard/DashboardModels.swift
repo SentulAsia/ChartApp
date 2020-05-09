@@ -106,7 +106,7 @@ enum DashboardModels {
 
                     struct Analytics: Decodable {
                         var job: Job?
-//                        var lineCharts: [LineCharts]?
+                        var lineCharts: [[LineCharts]]? // TODO: check with back end why array wrapped twice
                         var pieCharts: [PieCharts]?
                         var rating: Rating?
                         var service: Service?
@@ -126,12 +126,12 @@ enum DashboardModels {
                             } else {
                                 job = nil
                             }
-//                            lineCharts = [LineCharts]()
-//                            if let lineChartsArray = dictionary[keys.lineCharts.rawValue] as? [[String: Any]] {
-//                                for dic in lineChartsArray {
-//                                    lineCharts?.append(LineCharts(from: dic))
-//                                }
-//                            }
+                            lineCharts = [[LineCharts]]()
+                            if let lineChartsArrays = dictionary[keys.lineCharts.rawValue] as? [[[String: Any]]], let lineChartsArray = lineChartsArrays.first {
+                                for dic in lineChartsArray {
+                                    lineCharts?[0].append(LineCharts(from: dic))
+                                }
+                            }
                             pieCharts = [PieCharts]()
                             if let pieChartsArray = dictionary[keys.pieCharts.rawValue] as? [[String: Any]] {
                                 for dic in pieChartsArray {
@@ -153,7 +153,7 @@ enum DashboardModels {
                         init(from decoder: Decoder) throws {
                             let values = try decoder.container(keyedBy: CodingKeys.self)
                             job = try values.decodeIfPresent(Job.self, forKey: .job)
-//                            lineCharts = try values.decodeIfPresent([LineCharts].self, forKey: .lineCharts)
+                            lineCharts = try values.decodeIfPresent([[LineCharts]].self, forKey: .lineCharts)
                             pieCharts = try values.decodeIfPresent([PieCharts].self, forKey: .pieCharts)
                             rating = try values.decodeIfPresent(Rating.self, forKey: .rating)
                             service = try values.decodeIfPresent(Service.self, forKey: .service)
