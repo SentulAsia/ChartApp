@@ -12,6 +12,8 @@ class DashboardViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet weak var allButton: UIBarButtonItem!
+    
     typealias Models = DashboardModels
     typealias FetchDataStoreModels = Models.FetchFromRemoteDataStore
 
@@ -30,6 +32,12 @@ class DashboardViewController: UIViewController {
         fetchFromRemoteDataStore()
     }
 
+    // MARK: - Buttons
+
+    func setupButtons() {
+        allButton.isEnabled = scope != .all
+    }
+
     // MARK: - Use Case
 
     // MARK: Fetch From Remote Data Store
@@ -40,6 +48,7 @@ class DashboardViewController: UIViewController {
         loadingIndicator.show(on: self)
         worker.fetchFromRemoteDataStore(with: request) { [weak self] (viewModel) in
             loadingIndicator.dismiss()
+            self?.setupButtons()
             if viewModel.isSuccessful {
 
             } else {
@@ -50,6 +59,11 @@ class DashboardViewController: UIViewController {
 
     @IBAction func filterButtonTapped(_ sender: Any) {
         showDashboardFilter()
+    }
+
+    @IBAction func allButtonTapped(_ sender: Any) {
+        scope = .all
+        fetchFromRemoteDataStore()
     }
 }
 

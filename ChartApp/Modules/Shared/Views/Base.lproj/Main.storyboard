@@ -18,12 +18,22 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="dDw-wX-chS">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="P0f-Zc-KkH">
-                            <connections>
-                                <action selector="filterButtonTapped:" destination="BYZ-38-t0r" id="pKK-jI-DTd"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Filter" id="P0f-Zc-KkH">
+                                <connections>
+                                    <action selector="filterButtonTapped:" destination="BYZ-38-t0r" id="pKK-jI-DTd"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem enabled="NO" title="All" id="XLS-y2-CxW">
+                                <connections>
+                                    <action selector="allButtonTapped:" destination="BYZ-38-t0r" id="PcY-h5-qRd"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="allButton" destination="XLS-y2-CxW" id="3KO-pM-Lwu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
