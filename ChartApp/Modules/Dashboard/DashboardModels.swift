@@ -59,7 +59,7 @@ enum DashboardModels {
             }
 
             struct ResponseClass: Decodable {
-//                var data: DataClass?
+                var data: DataClass?
                 var message: String?
 
                 enum CodingKeys: String, CodingKey {
@@ -69,17 +69,17 @@ enum DashboardModels {
 
                 init(from dictionary: [String: Any]) {
                     let keys = CodingKeys.self
-//                    if let dataData = dictionary[keys.data.rawValue] as? [String: Any] {
-//                        data = DataClass(from: dataData)
-//                    } else {
-//                        data = nil
-//                    }
+                    if let dataData = dictionary[keys.data.rawValue] as? [String: Any] {
+                        data = DataClass(from: dataData)
+                    } else {
+                        data = nil
+                    }
                     message = dictionary[keys.message.rawValue] as? String
                 }
 
                 init(from decoder: Decoder) throws {
                     let values = try decoder.container(keyedBy: CodingKeys.self)
-//                    data = try values.decodeIfPresent(DataClass.self, forKey: .data)
+                    data = try values.decodeIfPresent(DataClass.self, forKey: .data)
                     message = try values.decodeIfPresent(String.self, forKey: .message)
                 }
 
@@ -106,8 +106,8 @@ enum DashboardModels {
 
                     struct Analytics: Decodable {
                         var job: Job?
-                        var lineCharts: [Charts]?
-                        var pieCharts: [Charts]?
+//                        var lineCharts: [LineCharts]?
+                        var pieCharts: [PieCharts]?
                         var rating: Rating?
                         var service: Service?
 
@@ -126,16 +126,16 @@ enum DashboardModels {
                             } else {
                                 job = nil
                             }
-                            lineCharts = [Charts]()
-                            if let lineChartsArray = dictionary[keys.lineCharts.rawValue] as? [[String: Any]] {
-                                for dic in lineChartsArray {
-                                    lineCharts?.append(Charts(from: dic))
-                                }
-                            }
-                            pieCharts = [Charts]()
+//                            lineCharts = [LineCharts]()
+//                            if let lineChartsArray = dictionary[keys.lineCharts.rawValue] as? [[String: Any]] {
+//                                for dic in lineChartsArray {
+//                                    lineCharts?.append(LineCharts(from: dic))
+//                                }
+//                            }
+                            pieCharts = [PieCharts]()
                             if let pieChartsArray = dictionary[keys.pieCharts.rawValue] as? [[String: Any]] {
                                 for dic in pieChartsArray {
-                                    pieCharts?.append(Charts(from: dic))
+                                    pieCharts?.append(PieCharts(from: dic))
                                 }
                             }
                             if let ratingData = dictionary[keys.rating.rawValue] as? [String: Any] {
@@ -153,8 +153,8 @@ enum DashboardModels {
                         init(from decoder: Decoder) throws {
                             let values = try decoder.container(keyedBy: CodingKeys.self)
                             job = try values.decodeIfPresent(Job.self, forKey: .job)
-                            lineCharts = try values.decodeIfPresent([Charts].self, forKey: .lineCharts)
-                            pieCharts = try values.decodeIfPresent([Charts].self, forKey: .pieCharts)
+//                            lineCharts = try values.decodeIfPresent([LineCharts].self, forKey: .lineCharts)
+                            pieCharts = try values.decodeIfPresent([PieCharts].self, forKey: .pieCharts)
                             rating = try values.decodeIfPresent(Rating.self, forKey: .rating)
                             service = try values.decodeIfPresent(Service.self, forKey: .service)
                         }
@@ -220,7 +220,91 @@ enum DashboardModels {
                             }
                         }
 
-                        struct Charts: Decodable {
+                        struct ChartItems: Decodable {
+                            var key: String?
+                            var value: Decimal?
+
+                            enum CodingKeys: String, CodingKey {
+                                case key
+                                case value
+                            }
+
+                            init(from dictionary: [String: Any]) {
+                                let keys = CodingKeys.self
+                                key = dictionary[keys.key.rawValue] as? String
+                                value = (dictionary[keys.value.rawValue] as? NSNumber)?.decimalValue
+                            }
+
+                            init(from decoder: Decoder) throws {
+                                let values = try decoder.container(keyedBy: CodingKeys.self)
+                                key = try values.decodeIfPresent(String.self, forKey: .key)
+                                value = try values.decodeIfPresent(Decimal.self, forKey: .value)
+                            }
+                        }
+
+                        struct LineCharts: Decodable {
+                            var chartType: String?
+                            var description: String?
+                            var items: [LineChartItems]?
+                            var title: String?
+
+                            enum CodingKeys: String, CodingKey {
+                                case chartType
+                                case description
+                                case items
+                                case title
+                            }
+
+                            init(from dictionary: [String: Any]) {
+                                let keys = CodingKeys.self
+                                chartType = dictionary[keys.chartType.rawValue] as? String
+                                description = dictionary[keys.description.rawValue] as? String
+                                items = [LineChartItems]()
+                                if let itemsArray = dictionary[keys.items.rawValue] as? [[String: Any]] {
+                                    for dic in itemsArray {
+                                        items?.append(LineChartItems(from: dic))
+                                    }
+                                }
+                                title = dictionary[keys.title.rawValue] as? String
+                            }
+
+                            init(from decoder: Decoder) throws {
+                                let values = try decoder.container(keyedBy: CodingKeys.self)
+                                chartType = try values.decodeIfPresent(String.self, forKey: .chartType)
+                                description = try values.decodeIfPresent(String.self, forKey: .description)
+                                items = try values.decodeIfPresent([LineChartItems].self, forKey: .items)
+                                title = try values.decodeIfPresent(String.self, forKey: .title)
+                            }
+
+                            struct LineChartItems: Decodable {
+                                var key: String?
+                                var value: [ChartItems]?
+
+                                enum CodingKeys: String, CodingKey {
+                                    case key
+                                    case value
+                                }
+
+                                init(from dictionary: [String: Any]) {
+                                    let keys = CodingKeys.self
+                                    key = dictionary[keys.key.rawValue] as? String
+                                    value = [ChartItems]()
+                                    if let valueArray = dictionary[keys.value.rawValue] as? [[String: Any]] {
+                                        for dic in valueArray {
+                                            value?.append(ChartItems(from: dic))
+                                        }
+                                    }
+                                }
+
+                                init(from decoder: Decoder) throws {
+                                    let values = try decoder.container(keyedBy: CodingKeys.self)
+                                    key = try values.decodeIfPresent(String.self, forKey: .key)
+                                    value = try values.decodeIfPresent([ChartItems].self, forKey: .value)
+                                }
+                            }
+                        }
+
+                        struct PieCharts: Decodable {
                             var chartType: String?
                             var description: String?
                             var items: [ChartItems]?
@@ -252,28 +336,6 @@ enum DashboardModels {
                                 description = try values.decodeIfPresent(String.self, forKey: .description)
                                 items = try values.decodeIfPresent([ChartItems].self, forKey: .items)
                                 title = try values.decodeIfPresent(String.self, forKey: .title)
-                            }
-
-                            struct ChartItems: Decodable {
-                                var key: String?
-                                var value: Decimal?
-
-                                enum CodingKeys: String, CodingKey {
-                                    case key
-                                    case value
-                                }
-
-                                init(from dictionary: [String: Any]) {
-                                    let keys = CodingKeys.self
-                                    key = dictionary[keys.key.rawValue] as? String
-                                    value = (dictionary[keys.value.rawValue] as? NSNumber)?.decimalValue
-                                }
-
-                                init(from decoder: Decoder) throws {
-                                    let values = try decoder.container(keyedBy: CodingKeys.self)
-                                    key = try values.decodeIfPresent(String.self, forKey: .key)
-                                    value = try values.decodeIfPresent(Decimal.self, forKey: .value)
-                                }
                             }
                         }
 
