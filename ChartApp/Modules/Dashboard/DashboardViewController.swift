@@ -37,11 +37,11 @@ class DashboardViewController: UIViewController {
     func fetchFromRemoteDataStore() {
         let request = FetchDataStoreModels.Request(scope: scope)
         worker.fetchFromRemoteDataStore(with: request) { [weak self] (viewModel) in
-            if viewModel.isSuccessful {
-
-            } else {
+//            if viewModel.isSuccessful {
+//
+//            } else {
                 self?.showToast(with: viewModel.message)
-            }
+//            }
         }
     }
 
@@ -72,6 +72,6 @@ private extension DashboardViewController {
 
     func showToast(with message: String?) {
         let toast = ToastController(message: message)
-        self.present(toast, animated: true)
+        toast.show(on: self)
     }
 }

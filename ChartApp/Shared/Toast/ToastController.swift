@@ -71,6 +71,16 @@ class ToastController: UIViewController {
 
     // MARK: - Use Case
 
+    // MARK: Show
+
+    func show(on sender: UIViewController) {
+        sender.present(self, animated: false) {
+            UIView.animate(withDuration: 0.3) {
+                self.contentView.alpha = 1
+            }
+        }
+    }
+
     // MARK: Dismiss
 
     @objc func dismiss(_ sender: Any) {
