@@ -24,6 +24,8 @@
 		B837F45124666AE100A32AB2 /* String+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F45024666AE100A32AB2 /* String+Utility.swift */; };
 		B837F45424666F3200A32AB2 /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F45324666F3200A32AB2 /* DashboardTests.swift */; };
 		B837F4562466830E00A32AB2 /* APIManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F4552466830E00A32AB2 /* APIManagerStub.swift */; };
+		B837F45B24669FBA00A32AB2 /* ToastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B837F45924669FBA00A32AB2 /* ToastController.swift */; };
+		B837F45C24669FBA00A32AB2 /* ToastController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B837F45A24669FBA00A32AB2 /* ToastController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		B837F45024666AE100A32AB2 /* String+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utility.swift"; sourceTree = "<group>"; };
 		B837F45324666F3200A32AB2 /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		B837F4552466830E00A32AB2 /* APIManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerStub.swift; sourceTree = "<group>"; };
+		B837F45924669FBA00A32AB2 /* ToastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastController.swift; sourceTree = "<group>"; };
+		B837F45A24669FBA00A32AB2 /* ToastController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToastController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,7 @@
 				B837F448246558BE00A32AB2 /* API */,
 				B837F44B24655D2B00A32AB2 /* Helpers */,
 				B837F45224666AE600A32AB2 /* Extensions */,
+				B837F45D24669FBE00A32AB2 /* Toast */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -207,6 +212,15 @@
 				B837F45024666AE100A32AB2 /* String+Utility.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B837F45D24669FBE00A32AB2 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				B837F45924669FBA00A32AB2 /* ToastController.swift */,
+				B837F45A24669FBA00A32AB2 /* ToastController.xib */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +307,7 @@
 				B837F4222465345500A32AB2 /* LaunchScreen.storyboard in Resources */,
 				B837F41F2465345500A32AB2 /* Assets.xcassets in Resources */,
 				B837F41D2465345200A32AB2 /* Main.storyboard in Resources */,
+				B837F45C24669FBA00A32AB2 /* ToastController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +331,7 @@
 				B837F43F246556B600A32AB2 /* DashboardModels.swift in Sources */,
 				B837F41A2465345200A32AB2 /* DashboardViewController.swift in Sources */,
 				B837F44A24655CE100A32AB2 /* Log.swift in Sources */,
+				B837F45B24669FBA00A32AB2 /* ToastController.swift in Sources */,
 				B837F44D24655FCC00A32AB2 /* Constants.swift in Sources */,
 				B837F441246556C300A32AB2 /* DashboardWorker.swift in Sources */,
 				B837F4162465345200A32AB2 /* AppDelegate.swift in Sources */,

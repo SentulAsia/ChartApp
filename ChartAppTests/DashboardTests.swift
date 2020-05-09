@@ -25,7 +25,7 @@ class DashboardTests: XCTestCase {
 
     func testFetchFromRemoteDataStoreSuccess() throws {
         // given
-        let apiManagerStub = APIManagerStub(response: [:], status: 200)
+        let apiManagerStub = APIManagerStub(response: [:], status: 201)
         sut.apiManager = apiManagerStub
         let request = FetchDataStoreModels.Request(scope: .all)
         let expect = expectation(description: "Wait for fetchFromRemoteDataStore(with:) to return")
@@ -45,7 +45,7 @@ class DashboardTests: XCTestCase {
 
     func testFetchFromRemoteDataStoreFailed() throws {
         // given
-        let apiManagerStub = APIManagerStub(response: [:], status: 500)
+        let apiManagerStub = APIManagerStub(response: [:], status: 404)
         sut.apiManager = apiManagerStub
         let request = FetchDataStoreModels.Request(scope: .all)
         let expect = expectation(description: "Wait for fetchFromRemoteDataStore(with:) to return")

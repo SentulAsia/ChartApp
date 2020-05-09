@@ -59,7 +59,7 @@ enum DashboardModels {
             }
 
             struct ResponseClass: Decodable {
-                var data: DataClass?
+//                var data: DataClass?
                 var message: String?
 
                 enum CodingKeys: String, CodingKey {
@@ -69,17 +69,17 @@ enum DashboardModels {
 
                 init(from dictionary: [String: Any]) {
                     let keys = CodingKeys.self
-                    if let dataData = dictionary[keys.data.rawValue] as? [String: Any] {
-                        data = DataClass(from: dataData)
-                    } else {
-                        data = nil
-                    }
+//                    if let dataData = dictionary[keys.data.rawValue] as? [String: Any] {
+//                        data = DataClass(from: dataData)
+//                    } else {
+//                        data = nil
+//                    }
                     message = dictionary[keys.message.rawValue] as? String
                 }
 
                 init(from decoder: Decoder) throws {
                     let values = try decoder.container(keyedBy: CodingKeys.self)
-                    data = try values.decodeIfPresent(DataClass.self, forKey: .data)
+//                    data = try values.decodeIfPresent(DataClass.self, forKey: .data)
                     message = try values.decodeIfPresent(String.self, forKey: .message)
                 }
 
@@ -348,6 +348,7 @@ enum DashboardModels {
 
         struct ViewModel {
             var isSuccessful: Bool
+            var message: String?
         }
     }
 

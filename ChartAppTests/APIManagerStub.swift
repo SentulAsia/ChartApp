@@ -28,7 +28,7 @@ class APIManagerStub: APIManager {
         ])
         let data = try! JSONSerialization.data(withJSONObject: response, options: .init(rawValue: 0))
         self.data = data
-        self.result = status == 200 ? .success(data) : .failure(e)
+        self.result = status == 200 || status == 201 ? .success(data) : .failure(e)
     }
 
     class APIWorkerStub: APIWorker {

@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToastController" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ToastController" customModule="ChartApp" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundView" destination="hlt-ar-pd9" id="Bdy-SK-PZ0"/>
+                <outlet property="contentView" destination="vll-E7-uiV" id="XU9-4o-0hS"/>
+                <outlet property="text" destination="XeD-P7-ubt" id="urE-yc-uw5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,8 +19,42 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlt-ar-pd9">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vll-E7-uiV">
+                    <rect key="frame" x="16" y="303.5" width="343" height="60.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeD-P7-ubt">
+                            <rect key="frame" x="40" y="20" width="263" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="XeD-P7-ubt" secondAttribute="bottom" constant="20" id="8Uq-6P-vGH"/>
+                        <constraint firstItem="XeD-P7-ubt" firstAttribute="top" secondItem="vll-E7-uiV" secondAttribute="top" constant="20" id="95L-df-KTH"/>
+                        <constraint firstAttribute="trailing" secondItem="XeD-P7-ubt" secondAttribute="trailing" constant="40" id="bdE-sR-oj9"/>
+                        <constraint firstItem="XeD-P7-ubt" firstAttribute="leading" secondItem="vll-E7-uiV" secondAttribute="leading" constant="40" id="d1q-On-HGy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="hlt-ar-pd9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7j8-zu-ZLw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vll-E7-uiV" secondAttribute="trailing" constant="16" id="E2p-g0-gbv"/>
+                <constraint firstItem="hlt-ar-pd9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Hxd-11-Go4"/>
+                <constraint firstAttribute="trailing" secondItem="hlt-ar-pd9" secondAttribute="trailing" id="Ivb-NK-nND"/>
+                <constraint firstItem="vll-E7-uiV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="WRg-5l-4kR"/>
+                <constraint firstAttribute="bottom" secondItem="hlt-ar-pd9" secondAttribute="bottom" id="doE-OE-lot"/>
+                <constraint firstItem="vll-E7-uiV" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="sN6-44-bAK"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="138.40000000000001" y="141.67916041979012"/>
         </view>
     </objects>
 </document>
