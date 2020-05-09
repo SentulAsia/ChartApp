@@ -36,12 +36,15 @@ class DashboardViewController: UIViewController {
 
     func fetchFromRemoteDataStore() {
         let request = FetchDataStoreModels.Request(scope: scope)
+        let loadingIndicator = LoadingIndicatorController()
+        loadingIndicator.show(on: self)
         worker.fetchFromRemoteDataStore(with: request) { [weak self] (viewModel) in
-//            if viewModel.isSuccessful {
-//
-//            } else {
+            loadingIndicator.dismiss()
+            if viewModel.isSuccessful {
+
+            } else {
                 self?.showToast(with: viewModel.message)
-//            }
+            }
         }
     }
 
