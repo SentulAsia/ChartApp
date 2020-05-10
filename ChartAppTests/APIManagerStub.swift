@@ -21,12 +21,12 @@ class APIManagerStub: APIManager {
         }
     }
 
-    init(response: [String: String] = [:], status: Int = 200) {
+    init(response: [String: Any] = [:], status: Int = 200) {
         let e = NSError(domain: "", code: 0, userInfo: [
         NSLocalizedDescriptionKey: NSLocalizedString("Error", value: Constants.Message.failureDefault, comment: "") ,
         NSLocalizedFailureReasonErrorKey: NSLocalizedString("Error", value: Constants.Message.failureDefault, comment: "")
         ])
-        let data = try! JSONSerialization.data(withJSONObject: response, options: .init(rawValue: 0))
+        let data = try! JSONSerialization.data(withJSONObject: response, options: JSONSerialization.WritingOptions(rawValue: 0))
         self.data = data
         self.result = status == 200 || status == 201 ? .success(data) : .failure(e)
     }
