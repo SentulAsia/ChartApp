@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJJ-Ct-z9b">
-                        <rect key="frame" x="16" y="36.5" width="116.5" height="80"/>
+                        <rect key="frame" x="16" y="78.5" width="116.5" height="80"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bua-Xg-Ceg">
                                 <rect key="frame" x="0.0" y="0.0" width="116.5" height="41"/>
@@ -68,14 +68,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="tXO-vF-CaC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2Tu-Vs-s5Z"/>
-                    <constraint firstItem="O9w-UH-k11" firstAttribute="top" secondItem="CJJ-Ct-z9b" secondAttribute="top" id="Kjj-wJ-R5V"/>
                     <constraint firstAttribute="trailing" secondItem="O9w-UH-k11" secondAttribute="trailing" constant="16" id="M4Q-42-r4D"/>
                     <constraint firstItem="O9w-UH-k11" firstAttribute="leading" secondItem="CJJ-Ct-z9b" secondAttribute="trailing" constant="8" id="Rx5-dQ-Etx"/>
                     <constraint firstAttribute="bottom" secondItem="O9w-UH-k11" secondAttribute="bottom" constant="16" id="VRP-yK-2fJ"/>
+                    <constraint firstItem="CJJ-Ct-z9b" firstAttribute="centerY" secondItem="O9w-UH-k11" secondAttribute="centerY" id="Vae-Si-iZI"/>
                     <constraint firstItem="CJJ-Ct-z9b" firstAttribute="leading" secondItem="tXO-vF-CaC" secondAttribute="leading" id="WKj-Tc-LYe"/>
                     <constraint firstItem="tXO-vF-CaC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="XJ7-dQ-9IV"/>
-                    <constraint firstItem="CJJ-Ct-z9b" firstAttribute="top" secondItem="tXO-vF-CaC" secondAttribute="bottom" id="aEs-Q2-1YC"/>
                     <constraint firstAttribute="trailing" secondItem="tXO-vF-CaC" secondAttribute="trailing" constant="16" id="kvB-Je-cgb"/>
+                    <constraint firstItem="O9w-UH-k11" firstAttribute="top" secondItem="tXO-vF-CaC" secondAttribute="bottom" id="xNg-Pp-KKd"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

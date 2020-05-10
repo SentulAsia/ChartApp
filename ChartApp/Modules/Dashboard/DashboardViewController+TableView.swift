@@ -48,7 +48,7 @@ extension DashboardViewController: UITableViewDataSource {
             cell.averageLabel.text = rating?.average
             cell.totalItemsLabel.text = rating?.totalItems
             cell.totalRatingLabel.text = rating?.totalRating
-            cell.setChart(with: rating?.chartItems)
+            cell.setChart(with: rating?.chartData)
             return cell
 
         // Jobs

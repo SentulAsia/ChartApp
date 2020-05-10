@@ -55,8 +55,8 @@ private extension DashboardWorker {
         let average = rating?.avg?.description
         let totalItems = "out of " + (rating?.items?.count.description ?? "")
         let totalRating = calculateTotalRating(items: rating?.items).description + " Ratings"
-        let chartItems = generateChartItems(items: rating?.items, title: rating?.title)
-        let rating = Models.Rating(description: description, average: average, totalItems: totalItems, totalRating: totalRating, chartItems: chartItems)
+        let chartData = generateChartData(items: rating?.items, title: rating?.title)
+        let rating = Models.Rating(description: description, average: average, totalItems: totalItems, totalRating: totalRating, chartData: chartData)
         return rating
     }
 
@@ -71,16 +71,17 @@ private extension DashboardWorker {
         return total
     }
 
-    func generateChartItems(items: [String : Int]?, title: String?) -> [Models.ChartItem] {
-        guard let items = items else { return [] }
+    func generateChartData(items: [String : Int]?, title: String?) -> Models.ChartData? {
+        guard let items = items else { return nil }
         var chartItems: [Models.ChartItem] = []
         for item in items {
-            let key = title ?? item.key
+            let key = Double(item.key) ?? 0.0
             let value = Double(item.value)
             let chartItem = Models.ChartItem(key: key, value: value)
             chartItems.append(chartItem)
         }
-        return chartItems
+        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title)
+        return chartData
     }
 
     func generateItems(from items: [AnalyticsModels.Items]?) -> [Models.Item] {

@@ -22,7 +22,7 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-me-psA" customClass="BarChartView" customModule="Charts">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yU-me-psA" customClass="PieChartView" customModule="Charts">
                         <rect key="frame" x="16" y="177" width="288" height="216"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -42,8 +42,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="barChartView" destination="0yU-me-psA" id="5jc-b0-5sJ"/>
                 <outlet property="descriptionLabel" destination="QXS-Ay-N6B" id="bxc-D4-Rl9"/>
+                <outlet property="pieChartView" destination="0yU-me-psA" id="P9D-av-62w"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="263.50446428571428"/>
         </tableViewCell>

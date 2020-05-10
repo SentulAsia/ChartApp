@@ -428,8 +428,13 @@ enum DashboardModels {
 
     // MARK: - View Model
 
+    struct ChartData {
+        var chartItems: [ChartItem]
+        var chartLabel: String?
+    }
+
     struct ChartItem {
-        var key: String
+        var key: Double
         var value: Double
     }
 
@@ -438,7 +443,7 @@ enum DashboardModels {
         var average: String?
         var totalItems: String?
         var totalRating: String?
-        var chartItems: [ChartItem]
+        var chartData: ChartData?
     }
 
     struct Item {

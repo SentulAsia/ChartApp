@@ -45,8 +45,6 @@ class RatingTableViewCell: UITableViewCell {
         ratingChartView.setScaleEnabled(true)
         ratingChartView.pinchZoomEnabled = false
 
-        ratingChartView.delegate = self
-
         ratingChartView.drawBarShadowEnabled = false
         ratingChartView.drawValueAboveBarEnabled = true
 
@@ -74,17 +72,17 @@ class RatingTableViewCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func setChart(with items: [Models.ChartItem]?) {
-        guard let items = items, items.count > 0 else { return }
+    func setChart(with data: Models.ChartData?) {
+        guard let items = data?.chartItems, items.count > 0 else { return }
 
         var dataEntries: [BarChartDataEntry] = []
 
         for i in 0..<items.count {
-            let dataEntry = BarChartDataEntry(x: Double(i + 1), y: items[i].value)
+            let dataEntry = BarChartDataEntry(x: Double(items[i].key), y: items[i].value)
             dataEntries.append(dataEntry)
         }
 
-        let chartDataSet = BarChartDataSet(entries: dataEntries, label: items[0].key)
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: data?.chartLabel)
         chartDataSet.colors = [UIColor.gray]
 
         let chartData = BarChartData(dataSet: chartDataSet)
@@ -92,8 +90,4 @@ class RatingTableViewCell: UITableViewCell {
         ratingChartView.data = chartData
         ratingChartView.animate(yAxisDuration: 2)
     }
-}
-
-extension RatingTableViewCell: ChartViewDelegate {
-
 }
