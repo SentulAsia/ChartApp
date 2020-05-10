@@ -17,28 +17,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXO-vF-CaC">
-                        <rect key="frame" x="16" y="16" width="288" height="104"/>
+                        <rect key="frame" x="16" y="16" width="288" height="20.5"/>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJJ-Ct-z9b">
-                        <rect key="frame" x="16" y="120" width="81" height="80"/>
+                        <rect key="frame" x="16" y="36.5" width="116.5" height="80"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bua-Xg-Ceg">
-                                <rect key="frame" x="0.0" y="0.0" width="81" height="41"/>
+                                <rect key="frame" x="0.0" y="0.0" width="116.5" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijz-ji-uqu">
-                                <rect key="frame" x="0.0" y="41" width="81" height="21"/>
+                                <rect key="frame" x="0.0" y="41" width="116.5" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JsZ-uZ-HZi">
-                                <rect key="frame" x="0.0" y="62" width="81" height="18"/>
+                                <rect key="frame" x="0.0" y="62" width="116.5" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -58,10 +58,20 @@
                             <constraint firstItem="Ijz-ji-uqu" firstAttribute="top" secondItem="Bua-Xg-Ceg" secondAttribute="bottom" id="nvo-d5-Nbf"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9w-UH-k11" customClass="BarChartView" customModule="Charts">
+                        <rect key="frame" x="140.5" y="36.5" width="163.5" height="163.5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="O9w-UH-k11" secondAttribute="height" multiplier="1:1" id="iGf-kf-yls"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tXO-vF-CaC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2Tu-Vs-s5Z"/>
-                    <constraint firstAttribute="bottom" secondItem="CJJ-Ct-z9b" secondAttribute="bottom" constant="16" id="6cS-dB-OqP"/>
+                    <constraint firstItem="O9w-UH-k11" firstAttribute="top" secondItem="CJJ-Ct-z9b" secondAttribute="top" id="Kjj-wJ-R5V"/>
+                    <constraint firstAttribute="trailing" secondItem="O9w-UH-k11" secondAttribute="trailing" constant="16" id="M4Q-42-r4D"/>
+                    <constraint firstItem="O9w-UH-k11" firstAttribute="leading" secondItem="CJJ-Ct-z9b" secondAttribute="trailing" constant="8" id="Rx5-dQ-Etx"/>
+                    <constraint firstAttribute="bottom" secondItem="O9w-UH-k11" secondAttribute="bottom" constant="16" id="VRP-yK-2fJ"/>
                     <constraint firstItem="CJJ-Ct-z9b" firstAttribute="leading" secondItem="tXO-vF-CaC" secondAttribute="leading" id="WKj-Tc-LYe"/>
                     <constraint firstItem="tXO-vF-CaC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="XJ7-dQ-9IV"/>
                     <constraint firstItem="CJJ-Ct-z9b" firstAttribute="top" secondItem="tXO-vF-CaC" secondAttribute="bottom" id="aEs-Q2-1YC"/>
@@ -72,6 +82,7 @@
             <connections>
                 <outlet property="averageLabel" destination="Bua-Xg-Ceg" id="Rnb-Y1-uIH"/>
                 <outlet property="descriptionLabel" destination="tXO-vF-CaC" id="Zfn-k1-53y"/>
+                <outlet property="ratingChartView" destination="O9w-UH-k11" id="uEq-1k-T3t"/>
                 <outlet property="totalItemsLabel" destination="Ijz-ji-uqu" id="FnC-ZY-l9V"/>
                 <outlet property="totalRatingLabel" destination="JsZ-uZ-HZi" id="oqb-zl-iwk"/>
             </connections>
