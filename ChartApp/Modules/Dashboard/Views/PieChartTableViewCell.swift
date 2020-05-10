@@ -37,6 +37,8 @@ class PieChartTableViewCell: UITableViewCell {
         pieChartView.noDataText = "No Data"
         pieChartView.backgroundColor = UIColor.lightGray
         pieChartView.holeColor = UIColor.lightGray
+        pieChartView.layer.cornerRadius = 10
+        pieChartView.clipsToBounds = true
 
         pieChartView.usePercentValuesEnabled = true
         pieChartView.drawSlicesUnderHoleEnabled = false

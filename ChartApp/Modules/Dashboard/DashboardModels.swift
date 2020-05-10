@@ -428,13 +428,23 @@ enum DashboardModels {
 
     // MARK: - View Model
 
-    struct ChartData {
+    // Declared as class so it is passed as reference
+    class ChartData {
         var chartItems: [ChartItem]
         var chartLabel: String?
+
+        init(chartItems: [ChartItem], chartLabel: String?) {
+            self.chartItems = chartItems
+            self.chartLabel = chartLabel
+        }
+
+        var allValues: [Double] {
+            chartItems.map { $0.value }
+        }
     }
 
     struct ChartItem {
-        var key: String?
+        var key: Double
         var value: Double
     }
 
@@ -455,6 +465,7 @@ enum DashboardModels {
 
     struct LineChart {
         var description: String?
+        var chartData: [ChartData]
     }
 
     struct PieChart {

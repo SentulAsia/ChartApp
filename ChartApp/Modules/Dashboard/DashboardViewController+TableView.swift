@@ -14,25 +14,20 @@ extension DashboardViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        // Rating
         if section == 0 {
+            // Rating
             return 1
-
-        // Jobs
         } else if section == 1 {
+            // Jobs
             return jobItems.count
-
-        // Services
         } else if section == 2 {
+            // Services
             return serviceItems.count
-
-        // Line Chart
         } else if section == 3 {
+            // Line Chart
             return lineChart.count
-
-        // Pie Chart
         } else if section == 4 {
+            // Pie Chart
             return pieChart.count
         }
 
@@ -40,9 +35,8 @@ extension DashboardViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        // Rating
         if indexPath.section == 0 {
+            // Rating
             let cell = tableView.dequeueReusableCell(withIdentifier: RatingTableViewCell.identifier, for: indexPath) as! RatingTableViewCell
             cell.descriptionLabel.text = rating?.description
             cell.averageLabel.text = rating?.average
@@ -50,33 +44,30 @@ extension DashboardViewController: UITableViewDataSource {
             cell.totalRatingLabel.text = rating?.totalRating
             cell.setChart(with: rating?.chartData)
             return cell
-
-        // Jobs
         } else if indexPath.section == 1 {
+            // Jobs
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.identifier, for: indexPath) as! ItemTableViewCell
             cell.titleLabel.text = jobItems[indexPath.row].title
             cell.descriptionLabel.text = jobItems[indexPath.row].description
             cell.growthImageView.image = jobItems[indexPath.row].image
             cell.growthPercentageLabel.text = jobItems[indexPath.row].percentage
             return cell
-
-        // Services
         } else if indexPath.section == 2 {
+            // Services
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemTableViewCell.identifier, for: indexPath) as! ItemTableViewCell
             cell.titleLabel.text = serviceItems[indexPath.row].title
             cell.descriptionLabel.text = serviceItems[indexPath.row].description
             cell.growthImageView.image = serviceItems[indexPath.row].image
             cell.growthPercentageLabel.text = serviceItems[indexPath.row].percentage
             return cell
-
-        // Line Chart
         } else if indexPath.section == 3 {
+            // Line Chart
             let cell = tableView.dequeueReusableCell(withIdentifier: LineChartTableViewCell.identifier, for: indexPath) as! LineChartTableViewCell
             cell.descriptionLabel.text = lineChart[indexPath.row].description
+            cell.setChart(with: lineChart[indexPath.row].chartData)
             return cell
-
-        // Pie Chart
         } else if indexPath.section == 4 {
+            // Pie Chart
             let cell = tableView.dequeueReusableCell(withIdentifier: PieChartTableViewCell.identifier, for: indexPath) as! PieChartTableViewCell
             cell.descriptionLabel.text = pieChart[indexPath.row].description
             cell.setChart(with: pieChart[indexPath.row].chartData)

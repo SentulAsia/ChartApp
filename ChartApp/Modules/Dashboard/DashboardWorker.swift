@@ -78,7 +78,7 @@ private extension DashboardWorker {
         guard let items = items else { return nil }
         var chartItems: [Models.ChartItem] = []
         for item in items {
-            let key = item.key + "*"
+            let key = Double(item.key) ?? 0.0
             let value = Double(item.value)
             let chartItem = Models.ChartItem(key: key, value: value)
             chartItems.append(chartItem)
@@ -116,10 +116,48 @@ private extension DashboardWorker {
         var lineChartViewModel: [Models.LineChart] = []
         for lineChart in lineCharts {
             let description = lineChart.description
-            let lineChartObject = Models.LineChart(description: description)
+            let chartData = generateLineChartData(items: lineChart.items)
+            let lineChartObject = Models.LineChart(description: description, chartData: chartData)
             lineChartViewModel.append(lineChartObject)
         }
         return lineChartViewModel
+    }
+
+    func generateLineChartData(items: [AnalyticsModels.LineCharts.LineChartItems]?) -> [Models.ChartData] {
+        guard let items = items else { return [] }
+        var chartData: [Models.ChartData] = []
+
+        for item in items {
+            guard let values = item.value else { return [] }
+            for value in values {
+                let key = getXAxisLabel(from: item.key)
+                let chartItem = Models.ChartItem(key: key, value: value.value ?? 0.0)
+                if let chartData = checkForExistance(on: chartData, for: value.key) {
+                    chartData.chartItems.append(chartItem)
+                } else {
+                    let chartDatum = Models.ChartData(chartItems: [chartItem], chartLabel: value.key)
+                    chartData.append(chartDatum)
+                }
+            }
+        }
+
+        return chartData
+    }
+
+    func checkForExistance(on items: [Models.ChartData], for label: String?) -> Models.ChartData? {
+        guard let label = label else { return nil }
+        for item in items {
+            if item.chartLabel == label {
+                return item
+            }
+        }
+
+        return nil
+    }
+
+    func getXAxisLabel(from date: String?) -> Double {
+        guard let strippedString = date?.replacingOccurrences(of: "-", with: "") else { return 0.0 }
+        return Double(strippedString) ?? 0.0
     }
 
     // MARK: Pie Chart
@@ -140,10 +178,12 @@ private extension DashboardWorker {
         guard let items = items else { return [] }
         var chartData: [Models.ChartData] = []
 
+        var i: Double = 0
         for item in items {
-            let chartItems = Models.ChartItem(key: item.key, value: item.value ?? 0.0)
+            let chartItems = Models.ChartItem(key: i, value: item.value ?? 0.0)
             let chartDatum = Models.ChartData(chartItems: [chartItems], chartLabel: item.key)
             chartData.append(chartDatum)
+            i += 1
         }
 
         return chartData

@@ -37,8 +37,6 @@ class RatingTableViewCell: UITableViewCell {
     // MARK: - Charts
 
     func setupCharts() {
-        ratingChartView.noDataText = "No Data"
-
         ratingChartView.chartDescription?.enabled = false
 
         ratingChartView.setScaleEnabled(true)
