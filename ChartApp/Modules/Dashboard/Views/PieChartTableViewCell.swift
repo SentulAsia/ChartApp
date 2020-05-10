@@ -62,6 +62,6 @@ class PieChartTableViewCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func setChart(with items: [Models.ChartItem]?) {
+    func setChart(with data: [Models.ChartData]?) {
     }
 }

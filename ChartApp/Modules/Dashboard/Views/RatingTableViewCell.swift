@@ -83,7 +83,7 @@ class RatingTableViewCell: UITableViewCell {
         }
 
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: data?.chartLabel)
-        chartDataSet.colors = [UIColor.gray]
+        chartDataSet.colors = [data?.chartColor ?? UIColor.gray]
 
         let chartData = BarChartData(dataSet: chartDataSet)
 

@@ -346,7 +346,7 @@ enum DashboardModels {
                         }
 
                         struct Rating: Decodable {
-                            var avg: Int?
+                            var avg: Double?
                             var description: String?
                             var items: [String: Int]?
                             var title: String?
@@ -360,7 +360,7 @@ enum DashboardModels {
 
                             init(from dictionary: [String: Any]) {
                                 let keys = CodingKeys.self
-                                avg = dictionary[keys.avg.rawValue] as? Int
+                                avg = dictionary[keys.avg.rawValue] as? Double
                                 description = dictionary[keys.description.rawValue] as? String
                                 if let itemsData = dictionary[keys.items.rawValue] as? [String: Int] {
                                     items = itemsData
@@ -372,7 +372,7 @@ enum DashboardModels {
 
                             init(from decoder: Decoder) throws {
                                 let values = try decoder.container(keyedBy: CodingKeys.self)
-                                avg = try values.decodeIfPresent(Int.self, forKey: .avg)
+                                avg = try values.decodeIfPresent(Double.self, forKey: .avg)
                                 description = try values.decodeIfPresent(String.self, forKey: .description)
                                 items = try values.decodeIfPresent([String: Int].self, forKey: .items)
                                 title = try values.decodeIfPresent(String.self, forKey: .title)
@@ -431,6 +431,7 @@ enum DashboardModels {
     struct ChartData {
         var chartItems: [ChartItem]
         var chartLabel: String?
+        var chartColor: UIColor?
     }
 
     struct ChartItem {
@@ -459,6 +460,7 @@ enum DashboardModels {
 
     struct PieChart {
         var description: String?
+        var chartData: [ChartData]
     }
 
     // MARK: - Types

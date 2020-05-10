@@ -50,12 +50,15 @@ class DashboardWorker {
 // MARK: - Helpers
 
 private extension DashboardWorker {
+
+    // MARK: Rating
+
     func generateRating(from rating: AnalyticsModels.Rating?) -> Models.Rating {
         let description = rating?.description
         let average = rating?.avg?.description
         let totalItems = "out of " + (rating?.items?.count.description ?? "")
         let totalRating = calculateTotalRating(items: rating?.items).description + " Ratings"
-        let chartData = generateChartData(items: rating?.items, title: rating?.title)
+        let chartData = generateRatingChartData(items: rating?.items, title: rating?.title)
         let rating = Models.Rating(description: description, average: average, totalItems: totalItems, totalRating: totalRating, chartData: chartData)
         return rating
     }
@@ -71,7 +74,7 @@ private extension DashboardWorker {
         return total
     }
 
-    func generateChartData(items: [String : Int]?, title: String?) -> Models.ChartData? {
+    func generateRatingChartData(items: [String : Int]?, title: String?) -> Models.ChartData? {
         guard let items = items else { return nil }
         var chartItems: [Models.ChartItem] = []
         for item in items {
@@ -80,9 +83,11 @@ private extension DashboardWorker {
             let chartItem = Models.ChartItem(key: key, value: value)
             chartItems.append(chartItem)
         }
-        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title)
+        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title, chartColor: UIColor.gray)
         return chartData
     }
+
+    // MARK: Jobs and Services
 
     func generateItems(from items: [AnalyticsModels.Items]?) -> [Models.Item] {
         guard let items = items else { return [] }
@@ -104,6 +109,8 @@ private extension DashboardWorker {
         return image
     }
 
+    // MARK: Line Chart
+
     func generateLineChart(from lineCharts: [AnalyticsModels.LineCharts]?) -> [Models.LineChart] {
         guard let lineCharts = lineCharts else { return [] }
         var lineChartViewModel: [Models.LineChart] = []
@@ -115,14 +122,30 @@ private extension DashboardWorker {
         return lineChartViewModel
     }
 
+    // MARK: Pie Chart
+
     func generatePieChart(from pieCharts: [AnalyticsModels.PieCharts]?) -> [Models.PieChart] {
         guard let pieCharts = pieCharts else { return [] }
         var pieChartViewModel: [Models.PieChart] = []
         for pieChart in pieCharts {
             let description = pieChart.description
-            let pieChartObject = Models.PieChart(description: description)
+            let chartData = generatePieChartData(items: pieChart.items)
+            let pieChartObject = Models.PieChart(description: description, chartData: chartData)
             pieChartViewModel.append(pieChartObject)
         }
         return pieChartViewModel
+    }
+
+    func generatePieChartData(items: [AnalyticsModels.ChartItems]?) -> [Models.ChartData] {
+        guard let items = items else { return [] }
+//        var chartItems: [Models.ChartItem] = []
+//        for item in items {
+//            let key = Double(item.key) ?? 0.0
+//            let value = Double(item.value)
+//            let chartItem = Models.ChartItem(key: key, value: value)
+//            chartItems.append(chartItem)
+//        }
+//        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title)
+        return []
     }
 }
