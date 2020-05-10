@@ -79,6 +79,7 @@ extension DashboardViewController: UITableViewDataSource {
         } else if indexPath.section == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PieChartTableViewCell.identifier, for: indexPath) as! PieChartTableViewCell
             cell.descriptionLabel.text = pieChart[indexPath.row].description
+            cell.setChart(with: pieChart[indexPath.row].chartData)
             return cell
         }
 

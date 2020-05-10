@@ -33,6 +33,7 @@
 		B837F4682466E7FA00A32AB2 /* RatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B837F4662466E7FA00A32AB2 /* RatingTableViewCell.xib */; };
 		B88F746E2467163C007D2F15 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88F746A24671601007D2F15 /* Charts.framework */; };
 		B88F746F2467163C007D2F15 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B88F746A24671601007D2F15 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B88F747824679226007D2F15 /* Color+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88F747724679226007D2F15 /* Color+Utility.swift */; };
 		B8A0D78C2466FD5200FF7F85 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0D78A2466FD5200FF7F85 /* ItemTableViewCell.swift */; };
 		B8A0D78D2466FD5200FF7F85 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8A0D78B2466FD5200FF7F85 /* ItemTableViewCell.xib */; };
 		B8A0D79024670DEC00FF7F85 /* LineChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A0D78E24670DEC00FF7F85 /* LineChartTableViewCell.swift */; };
@@ -109,6 +110,7 @@
 		B837F4652466E7FA00A32AB2 /* RatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingTableViewCell.swift; sourceTree = "<group>"; };
 		B837F4662466E7FA00A32AB2 /* RatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RatingTableViewCell.xib; sourceTree = "<group>"; };
 		B88F746424671601007D2F15 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ChartApp/Shared/Plugin/Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		B88F747724679226007D2F15 /* Color+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Utility.swift"; sourceTree = "<group>"; };
 		B8A0D78A2466FD5200FF7F85 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		B8A0D78B2466FD5200FF7F85 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
 		B8A0D78E24670DEC00FF7F85 /* LineChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartTableViewCell.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				B837F45024666AE100A32AB2 /* String+Utility.swift */,
+				B88F747724679226007D2F15 /* Color+Utility.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				B837F4672466E7FA00A32AB2 /* RatingTableViewCell.swift in Sources */,
 				B837F4452465585900A32AB2 /* APIWorker.swift in Sources */,
 				B8A0D79424670DFD00FF7F85 /* PieChartTableViewCell.swift in Sources */,
+				B88F747824679226007D2F15 /* Color+Utility.swift in Sources */,
 				B837F4642466E00100A32AB2 /* DashboardViewController+TableView.swift in Sources */,
 				B8A0D78C2466FD5200FF7F85 /* ItemTableViewCell.swift in Sources */,
 				B837F4182465345200A32AB2 /* SceneDelegate.swift in Sources */,

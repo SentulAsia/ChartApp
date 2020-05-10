@@ -35,6 +35,8 @@ class PieChartTableViewCell: UITableViewCell {
 
     func setupCharts() {
         pieChartView.noDataText = "No Data"
+        pieChartView.backgroundColor = UIColor.lightGray
+        pieChartView.holeColor = UIColor.lightGray
 
         pieChartView.usePercentValuesEnabled = true
         pieChartView.drawSlicesUnderHoleEnabled = false
@@ -62,6 +64,35 @@ class PieChartTableViewCell: UITableViewCell {
 
     // MARK: - Methods
 
-    func setChart(with data: [Models.ChartData]?) {
+    func setChart(with data: [Models.ChartData]) {
+        guard data.count > 0 else { return }
+
+        var dataEntries: [PieChartDataEntry] = []
+
+        for datum in data {
+            let dataEntry = PieChartDataEntry(value: datum.chartItems.first?.value ?? 0.0, label: datum.chartLabel)
+            dataEntries.append(dataEntry)
+        }
+
+        let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
+        pieChartDataSet.sliceSpace = 2
+        pieChartDataSet.colors = Color().allValues
+
+        let pieChartData = PieChartData(dataSet: pieChartDataSet)
+        let pFormatter = NumberFormatter()
+        pFormatter.numberStyle = .percent
+        pFormatter.maximumFractionDigits = 1
+        pFormatter.multiplier = 1
+        pFormatter.percentSymbol = "%"
+        pieChartData.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
+
+        pieChartData.setValueFont(.systemFont(ofSize: 11, weight: .light))
+        pieChartData.setValueTextColor(.white)
+
+        pieChartView.data = pieChartData
+
+        pieChartView.highlightValues(nil)
+
+        pieChartView.animate(xAxisDuration: 1, yAxisDuration: 1)
     }
 }

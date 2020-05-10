@@ -41,9 +41,7 @@ class RatingTableViewCell: UITableViewCell {
 
         ratingChartView.chartDescription?.enabled = false
 
-        ratingChartView.dragEnabled = true
         ratingChartView.setScaleEnabled(true)
-        ratingChartView.pinchZoomEnabled = false
 
         ratingChartView.drawBarShadowEnabled = false
         ratingChartView.drawValueAboveBarEnabled = true
@@ -77,13 +75,15 @@ class RatingTableViewCell: UITableViewCell {
 
         var dataEntries: [BarChartDataEntry] = []
 
-        for i in 0..<items.count {
-            let dataEntry = BarChartDataEntry(x: Double(items[i].key), y: items[i].value)
+        var i = 0
+        for item in items {
+            let dataEntry = BarChartDataEntry(x: Double(i + 1), y: item.value)
             dataEntries.append(dataEntry)
+            i += 1
         }
 
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: data?.chartLabel)
-        chartDataSet.colors = [data?.chartColor ?? UIColor.gray]
+        chartDataSet.colors = [UIColor.gray]
 
         let chartData = BarChartData(dataSet: chartDataSet)
 

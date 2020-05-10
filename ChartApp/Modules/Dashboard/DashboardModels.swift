@@ -431,11 +431,10 @@ enum DashboardModels {
     struct ChartData {
         var chartItems: [ChartItem]
         var chartLabel: String?
-        var chartColor: UIColor?
     }
 
     struct ChartItem {
-        var key: Double
+        var key: String?
         var value: Double
     }
 

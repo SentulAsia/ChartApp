@@ -78,12 +78,12 @@ private extension DashboardWorker {
         guard let items = items else { return nil }
         var chartItems: [Models.ChartItem] = []
         for item in items {
-            let key = Double(item.key) ?? 0.0
+            let key = item.key + "*"
             let value = Double(item.value)
             let chartItem = Models.ChartItem(key: key, value: value)
             chartItems.append(chartItem)
         }
-        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title, chartColor: UIColor.gray)
+        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title)
         return chartData
     }
 
@@ -138,14 +138,14 @@ private extension DashboardWorker {
 
     func generatePieChartData(items: [AnalyticsModels.ChartItems]?) -> [Models.ChartData] {
         guard let items = items else { return [] }
-//        var chartItems: [Models.ChartItem] = []
-//        for item in items {
-//            let key = Double(item.key) ?? 0.0
-//            let value = Double(item.value)
-//            let chartItem = Models.ChartItem(key: key, value: value)
-//            chartItems.append(chartItem)
-//        }
-//        let chartData = Models.ChartData(chartItems: chartItems, chartLabel: title)
-        return []
+        var chartData: [Models.ChartData] = []
+
+        for item in items {
+            let chartItems = Models.ChartItem(key: item.key, value: item.value ?? 0.0)
+            let chartDatum = Models.ChartData(chartItems: [chartItems], chartLabel: item.key)
+            chartData.append(chartDatum)
+        }
+
+        return chartData
     }
 }
